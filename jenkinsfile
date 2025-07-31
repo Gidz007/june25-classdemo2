@@ -1,0 +1,31 @@
+pipline{
+    agent any
+    
+    environement{
+        VENV - 'venv'
+    }
+    stages {
+        stages('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Ejidia/june'
+            }
+        }
+        stages('Setup Virtual Environement') {
+            steps {
+                sh '''
+                    python3 -m venv $VENV
+                    . $VENV/bin/activate
+                    pip install -r requirements.txt
+                '''
+            }
+        }
+        stages('Run Tests') {
+            steps {
+                sh '''
+                    . $VENV/bin/activate
+                    pytest
+                '''
+            }
+        }
+    }    
+}
