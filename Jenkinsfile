@@ -7,7 +7,7 @@ pipeline{
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Ejidia/june'
+                git branch: 'main', url: 'https://github.com/Gidz007/june25-classdemo2'
             }
         }
         stage('Setup Virtual Environement') {
