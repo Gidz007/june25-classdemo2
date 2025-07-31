@@ -1,16 +1,16 @@
-pipline{
+pipeline{
     agent any
     
-    environement{
-        VENV - 'venv'
+    environment{
+        VENV = 'venv'
     }
     stages {
-        stages('Checkout') {
+        stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/Ejidia/june'
             }
         }
-        stages('Setup Virtual Environement') {
+        stage('Setup Virtual Environement') {
             steps {
                 sh '''
                     python3 -m venv $VENV
@@ -19,7 +19,7 @@ pipline{
                 '''
             }
         }
-        stages('Run Tests') {
+        stage('Run Tests') {
             steps {
                 sh '''
                     . $VENV/bin/activate
